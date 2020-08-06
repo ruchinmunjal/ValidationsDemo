@@ -1,0 +1,70 @@
+﻿@model ValidationsDemo.Controllers.DemoController.SampleModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "Demo", FormMethod.Post, new { }))
+{
+    <div class="form-row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            <div class="text-danger">@Html.ValidationMessageFor(x => x.Name)</div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Age, new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+            <div class="text-danger">@Html.ValidationMessageFor(x => x.Age)</div>
+        </div>
+
+    </div>
+    <div class="form-row">
+
+        <div class="col-md-auto">
+            <div class="form-group">
+               
+                @Html.LabelFor(m => m.ConfirmationOne, new { @class = "form-label" })
+                @Html.EditorFor(c => c.ConfirmationOne, new { @class = "form-control ignore" })
+                <div class="text-danger">@Html.ValidationMessageFor(x => x.ConfirmationOne)</div>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmationTwo, new { @class = "form-label" })
+                @Html.CheckBoxFor(c => c.ConfirmationTwo, new { @class = "form-control" })
+                <div class="text-danger">@Html.ValidationMessageFor(x => x.ConfirmationTwo)</div>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmationThree, new { @class = "form-label" })
+                @Html.CheckBoxFor(c => c.ConfirmationThree, new { @class = "form-control" })
+                <div class="text-danger">@Html.ValidationMessageFor(x => x.ConfirmationThree)</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.SelectedDepartmentId, new { @class = "form-label" })
+            @Html.DropDownListFor(model => model.SelectedDepartmentId, new SelectList(Model.Departments, "Id", "Name"), "--Select--", new { @class = "form-control form-control-sm selectpicker show-tick AvailableFailureCategory", @id = "departmentId", data_live_search = true, title = "Select an option", data_icon_base = "fa", data_tick_icon = "fa-check" })
+
+            <div class="text-danger">@Html.ValidationMessageFor(x => x.SelectedDepartmentId)</div>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-success"> Save </button>
+    <button type="button" class="btn btn-danger buttonSave" name="saveAsAdmin"> Save As Admin</button>
+    <button type="button" class="btn btn-info buttonSave" id="save" name="saveAsAdmin2"> Save As Admin 2</button>
+    @section scripts{
+        <script src="~/Scripts/demo.js"></script>    
+   }
+    
+}
